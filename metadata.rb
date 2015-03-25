@@ -1,6 +1,6 @@
 name             'cacert'
-maintainer       'The Authors'
-maintainer_email 'you@example.com'
+maintainer       'Shawn Weitzel'
+maintainer_email 'shawn.weitzel@changepoint.com'
 license          'all_rights'
 description      'Installs/Configures cacert'
 long_description 'Installs/Configures cacert'
