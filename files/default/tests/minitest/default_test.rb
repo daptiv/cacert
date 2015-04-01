@@ -1,17 +1,28 @@
-#:encoding utf-8
+# encoding: UTF-8
 require 'minitest/spec'
 
-# Defines Install Tests
-class CacertInstallTest < MiniTest::Chef::TestCase
-  def test_pem_file_exists
-    assert File.exist?("#{node['cacert']['install_path']}/cacert.pem")
-  end
+# The Install tests
+class CacertInstallTest < MiniTest::Chef::Spec
+  describe 'cacert::default' do
+    it 'ensure_pem_file_exists' do
+      assert File.exist?("#{node['cacert']['install_path']}/cacert.pem")
+    end
 
-  def test_env_var_exists
-    msg = "ENV['SSL_CERT_FILE'] missing or incorrect"
-    assert_equal(
-      "#{node['cacert']['install_path']}\\cacert.pem",
-      ENV['SSL_CERT_FILE'],
-      msg)
+    it 'ensures SSL_CERT_FILE environment variable is in registry' do
+      case node['platform']
+      when 'windows'
+        require 'win32/registry'
+        path = 'SYSTEM\\CurrentControlSet\\Control\\' \
+          'Session Manager\\Environment'
+        key = 'SSL_CERT_FILE'
+        reg_type = Win32::Registry::KEY_READ | 0x100
+        Win32::Registry::HKEY_LOCAL_MACHINE.open(path, reg_type) do |reg|
+          assert_equal(
+            "#{node['cacert']['install_path']}\\cacert.pem",
+            reg[key],
+            'SSL_CERT_FILE environment variable missing or incorrect')
+        end
+      end
+    end
   end
 end
