@@ -1,17 +1,17 @@
 ---
 driver:
   name: ec2
-  tags: {
-    "Name": <%= ENV['COOKBOOK'] %>
-  }
+  availability_zone: <%= ENV['EC2_AZ'] %>
   aws_ssh_key_id: <%= ENV['EC2_SSH_KEY_ID'] %>
   instance_type: <%= ENV['EC2_INSTANCE_TYPE'] %>
   region: <%= ENV['EC2_REGION'] %>
-  availability_zone: <%= ENV['EC2_AZ'] %>
-  subnet_id: <%= ENV['EC2_SUBNET_ID'] %>
-  security_group_ids: [<%= ENV['EC2_SG'] %>]
   require_chef_omnibus: <%= ENV['REQUIRE_CHEF_OMNIBUS'] %>
   retryable_tries: 240
+  security_group_ids: [<%= ENV['EC2_SG'] %>]
+  subnet_id: <%= ENV['EC2_SUBNET_ID'] %>
+  tags: {
+    "Name": <%= ENV['COOKBOOK'] %>
+  }
 
 provisioner:
   name: chef_zero
@@ -19,24 +19,24 @@ provisioner:
 platforms:
   - name: ubuntu
     driver:
-      image_search:
-        "name": <%= ENV['EC2_UBUNTU_IMAGE_NAME'] %>
       block_device_mappings:
         - device_name: /dev/sda1
           ebs:
             delete_on_termination: true
+      image_search:
+        "name": <%= ENV['EC2_UBUNTU_IMAGE_NAME'] %>
     transport:
       name: ssh
       username: <%= ENV['SSH_USER'] %>
       ssh_key: <%= ENV['SSH_KEY'] %>
   - name: windows
-    transport:
-      name: winrm
-      username: <%= ENV['WIN_USER'] %>
-      password: <%= ENV['WIN_PASS'] %>
     driver:
       image_search:
         "name": <%= ENV['EC2_IMAGE_NAME'] %>
+    transport:
+      name: winrm
+      password: <%= ENV['WIN_PASS'] %>
+      username: <%= ENV['WIN_USER'] %>
 
 suites:
   - name: <%= ENV['COOKBOOK'] %>
