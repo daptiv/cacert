@@ -7,9 +7,9 @@ services:
     image: ${CHEF_IMAGE}
     volumes:
       - $PWD:/${COOKBOOK}
+      - ${AWS_CRED_DIR}:/root/.aws
       - ${CHEF_CONFIG_DIR}:/root/.chef
       - ${CHEF_REPO_DIR}:/chef-repo
-      - ${AWS_CRED_DIR}:/root/.aws
       - ${SSH_KEY_DIR}:/root/.ssh
     working_dir: /${COOKBOOK}
     network_mode: "host"
@@ -19,16 +19,19 @@ services:
       CHEF_DATA_BAGS: /chef-repo/data_bags
       CHEF_SECRET_FILE: /root/.chef/${CHEF_SECRET_FILE}
       COOKBOOK: ${COOKBOOK}
-      EC2_ROLE_ARN: ${EC2_ROLE_ARN}
-      EC2_SSH_KEY_ID: ${EC2_SSH_KEY_ID}
-      EC2_REGION: ${EC2_REGION}
       EC2_AZ: ${EC2_AZ}
-      EC2_SUBNET_ID: ${EC2_SUBNET_ID}
-      EC2_INSTANCE_TYPE: ${EC2_INSTANCE_TYPE}
       EC2_IMAGE_NAME: ${EC2_IMAGE_NAME}
+      EC2_INSTANCE_TYPE: ${EC2_INSTANCE_TYPE}
+      EC2_REGION: ${EC2_REGION}
+      EC2_ROLE_ARN: ${EC2_ROLE_ARN}
       EC2_SG: ${EC2_SG}
+      EC2_SSH_KEY_ID: ${EC2_SSH_KEY_ID}
+      EC2_SUBNET_ID: ${EC2_SUBNET_ID}
+      EC2_UBUNTU_IMAGE_NAME: ${EC2_UBUNTU_IMAGE_NAME}
       LATEST_PPM_PACKAGE: ${LATEST_PPM_PACKAGE}
       REQUIRE_CHEF_OMNIBUS: ${REQUIRE_CHEF_OMNIBUS}
-      WIN_USER: ${WIN_USER}
+      SSH_PASS: ${SSH_PASS}
+      SSH_USER: ${SSH_USER}
       WIN_PASS: ${WIN_PASS}
+      WIN_USER: ${WIN_USER}
     command: "'chef exec rake'"
