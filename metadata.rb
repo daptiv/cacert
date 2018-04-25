@@ -5,4 +5,3 @@ license          'all_rights'
 description      'Installs/Configures cacert'
 long_description 'Installs/Configures cacert'
 version          '0.1.1'
-
