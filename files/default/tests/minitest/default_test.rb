@@ -1,4 +1,5 @@
 # encoding: UTF-8
+
 require 'minitest/spec'
 
 # The Install tests
@@ -20,7 +21,8 @@ class CacertInstallTest < MiniTest::Chef::Spec
           assert_equal(
             "#{node['cacert']['install_path']}\\cacert.pem",
             reg[key],
-            'SSL_CERT_FILE environment variable missing or incorrect')
+            'SSL_CERT_FILE environment variable missing or incorrect'
+          )
         end
       end
     end
