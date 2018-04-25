@@ -10,8 +10,11 @@ driver:
   availability_zone: <%= ENV['EC2_AZ'] %>
   subnet_id: <%= ENV['EC2_SUBNET_ID'] %>
   security_group_ids: [<%= ENV['EC2_SG'] %>]
-  require_chef_omnibus: '12.16.42' 
+  require_chef_omnibus: <%= ENV['REQUIRE_CHEF_OMNIBUS'] %>
   retryable_tries: 240
+
+provisioner:
+  name: chef_zero
 
 platforms:
   - name: ubuntu
@@ -34,17 +37,6 @@ platforms:
     driver:
       image_search:
         "name": <%= ENV['EC2_IMAGE_NAME'] %>
-      block_device_mappings:
-        - device_name: /dev/sda1
-          ebs:
-            volume_type: standard
-            volume_size: 40
-            delete_on_termination: true
-        - device_name: /dev/sdf
-          ebs:
-            volume_type: standard
-            volume_size: 20
-            delete_on_termination: true
 
 suites:
   - name: <%= ENV['COOKBOOK'] %>
