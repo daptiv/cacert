@@ -6,12 +6,12 @@ services:
   test:
     image: ${CHEF_IMAGE}
     volumes:
-      - $PWD:/${COOKBOOK}
-      - ${AWS_CRED_DIR}:/root/.aws
-      - ${CHEF_CONFIG_DIR}:/root/.chef
-      - ${CHEF_REPO_DIR}:/chef-repo
-      - ${SSH_KEY_DIR}:/root/.ssh
-    working_dir: /${COOKBOOK}
+      - $PWD:/${COOKBOOK}/
+      - ${AWS_CRED_DIR}:/root/.aws/
+      - ${CHEF_CONFIG_DIR}:/root/.chef/
+      - ${CHEF_REPO_DIR}:/chef-repo/
+      - ${SSH_KEY_DIR}:/root/.ssh/
+    working_dir: /${COOKBOOK}/
     network_mode: "host"
     environment:
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
@@ -30,7 +30,8 @@ services:
       EC2_UBUNTU_IMAGE_NAME: ${EC2_UBUNTU_IMAGE_NAME}
       LATEST_PPM_PACKAGE: ${LATEST_PPM_PACKAGE}
       REQUIRE_CHEF_OMNIBUS: ${REQUIRE_CHEF_OMNIBUS}
-      SSH_KEY: ${SSH_KEY}
+      SSH_KEY: /root/.ssh/${SSH_KEY}
+      SSH_PASS: ${SSH_PASS}
       SSH_USER: ${SSH_USER}
       WIN_PASS: ${WIN_PASS}
       WIN_USER: ${WIN_USER}
