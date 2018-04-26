@@ -1,8 +1,12 @@
 #
+# Author:: Daptiv Engineering (<cpc_sea_teamengineering@changepoint.com>)
 # Cookbook Name:: cacert
 # Recipe:: default
 #
-# Copyright (c) 2015 The Authors, All Rights Reserved.
+# Copyright (c) 2018 Changepoint
+#
+# All rights reserved - Do Not Redistribute
+#
 
 remote_file "#{node['cacert']['install_path']}/cacert.pem" do
   source node['cacert']['pem_url']

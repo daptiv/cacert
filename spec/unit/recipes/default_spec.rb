@@ -1,8 +1,12 @@
 #
+# Author:: Daptiv Engineering (<cpc_sea_teamengineering@changepoint.com>)
 # Cookbook Name:: cacert
 # Spec:: default
 #
-# Copyright (c) 2015 The Authors, All Rights Reserved.
+# Copyright (c) 2018 Changepoint
+#
+# All rights reserved - Do Not Redistribute
+#
 
 require 'spec_helper'
 
