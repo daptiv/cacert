@@ -16,6 +16,10 @@ RSpec.configure do |config|
   config.platform = 'windows'
   config.version = '2008R2'
 
+  config.mock_with :rspec do |mocks|
+    mocks.syntax = :should
+  end
+
   config.before(:each) do
     # Set some common global ENV vars used by Windows cookbooks
     ENV['WINDIR'] = 'C:\Windows'
