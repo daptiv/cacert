@@ -1,5 +1,5 @@
 #
-# Author:: Daptiv Engineering (<cpc_sea_teamengineering@changepoint.com>)
+# Author:: Changepoint Engineering (<cpc_sea_teamengineering@changepoint.com>)
 # Cookbook Name:: cacert
 # Recipe:: default
 #
