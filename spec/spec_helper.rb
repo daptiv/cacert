@@ -16,16 +16,14 @@ RSpec.configure do |config|
   config.platform = 'windows'
   config.version = '2008R2'
 
-  config.mock_with :rspec do |mocks|
-    mocks.syntax = :should
-  end
-
   config.before(:each) do
     # Set some common global ENV vars used by Windows cookbooks
     ENV['WINDIR'] = 'C:\Windows'
     stub_const('File::ALT_SEPARATOR', '\\')
 
     # Stub sensisble default return value for registry access
-    Chef::Recipe.any_instance.stub(:registry_key_exists?).and_return(false)
+    allow_any_instance_of(Chef::Recipe).to receive(
+      :registry_key_exists?
+    ).and_return(false)
   end
 end
