@@ -41,4 +41,4 @@ platforms:
 suites:
   - name: <%= ENV['COOKBOOK'] %>
     run_list:
-      - recipe[cacert::default]
+      - recipe[<%= ENV['COOKBOOK'] %>::default]
