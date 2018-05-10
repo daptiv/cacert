@@ -22,6 +22,8 @@ RSpec.configure do |config|
     stub_const('File::ALT_SEPARATOR', '\\')
 
     # Stub sensisble default return value for registry access
-    Chef::Recipe.any_instance.stub(:registry_key_exists?).and_return(false)
+    allow_any_instance_of(Chef::Recipe).to receive(
+      :registry_key_exists?
+    ).and_return(false)
   end
 end
