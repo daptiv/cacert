@@ -17,6 +17,18 @@ provisioner:
   name: chef_zero
 
 platforms:
+  - name: ubuntu
+    driver:
+      block_device_mappings:
+        - device_name: /dev/sda1
+          ebs:
+            delete_on_termination: true
+      image_search:
+        "name": <%= ENV['EC2_UBUNTU_IMAGE_NAME'] %>
+    transport:
+      name: ssh
+      username: <%= ENV['SSH_USER'] %>
+      ssh_key: <%= ENV['SSH_KEY'] %>
   - name: windows
     driver:
       image_search:

@@ -1,11 +1,12 @@
 # cacert
 
-Chef cookbook that downloads and updates a cacert.pem file on Windows and sets the SSL_CERT_FILE environment variable.
+Chef cookbook that downloads and updates a cacert.pem file and sets the SSL_CERT_FILE environment variable.
 
 ## Requirements
 
 ### Platform
-* Microsoft Windows
+* Linux
+* Windows
 
 ## Updating
 
