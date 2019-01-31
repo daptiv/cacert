@@ -12,10 +12,6 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 
-  # Select the Fauxhai template to load
-  config.platform = 'windows'
-  config.version = '2008R2'
-
   config.before(:each) do
     # Set some common global ENV vars used by Windows cookbooks
     ENV['WINDIR'] = 'C:\Windows'
@@ -25,5 +21,7 @@ RSpec.configure do |config|
     allow_any_instance_of(Chef::Recipe).to receive(
       :registry_key_exists?
     ).and_return(false)
+
+    stub_command('grep SSL_CERT_FILE /etc/environment').and_return(false)
   end
 end

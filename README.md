@@ -2,6 +2,12 @@
 
 Chef cookbook that downloads and updates a cacert.pem file and sets the SSL_CERT_FILE environment variable.
 
+## Requirements
+
+### Platform
+* Linux
+* Windows
+
 ## Updating
 
 The cacert.pem file contains a list of public root CA certificates.  It is used by the OpenSSL library to validate SSL connections.  The file must be kept up to date in order to ensure communication is possible with all public secure sites.

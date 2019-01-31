@@ -9,5 +9,5 @@ version File.exist?(ver_path) ? IO.read(ver_path).chomp : '0.2.1'
 chef_version '>= 12.5' if respond_to?(:chef_version)
 issues_url 'https://github.com/daptiv/daptiv_sso/issues'
 source_url 'https://github.com/daptiv/daptiv_sso/'
-supports 'ubuntu'
+supports 'linux'
 supports 'windows'
