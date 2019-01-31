@@ -11,12 +11,13 @@
 if platform?('windows')
   cert_file_path = "#{node['cacert']['windows']['install_path']}\\cacert.pem"
 
-  directory 'install_path' do
+  directory 'cacert installation directory' do
     path node['cacert']['windows']['install_path']
     action :create
   end
 
-  remote_file cert_file_path do
+  remote_file 'cacert file' do
+    path cert_file_path
     source node['cacert']['pem_url']
   end
 
@@ -26,7 +27,7 @@ if platform?('windows')
 else
   cert_file_path = "#{node['cacert']['linux']['install_path']}/cacert.pem"
 
-  directory 'install_path' do
+  directory 'cacert installation directory' do
     path node['cacert']['linux']['install_path']
     owner 'root'
     group 'root'
@@ -34,7 +35,8 @@ else
     action :create
   end
 
-  remote_file cert_file_path do
+  remote_file 'cacert file' do
+    path cert_file_path
     source node['cacert']['pem_url']
   end
 
